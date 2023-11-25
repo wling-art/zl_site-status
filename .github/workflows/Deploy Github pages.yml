@@ -13,12 +13,13 @@ jobs:
         persist-credentials: false
     - name: Install and Build
       run: |
-        npm install --legacy-peer-deps
-        npm run-script build
+        npm install pnpm -g
+        pnpm install --legacy-peer-deps
+        pnpm run-script build
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
         FOLDER: build
-        BUILD_SCRIPT: npm install pnpm -g && pnpm install && pnpm build
+        BUILD_SCRIPT: pnpm install && pnpm build
